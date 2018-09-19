@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 200px;
+			height: 200px;
+			border:1px solid black;
+			border-radius: 50%;
+			margin:100px auto;
+			position: relative;
+		}
+		ul{
+			list-style: none;
+			
+		}
+		.box ul li{
+			width: 2px;
+			height: 10px;
+			background-color: black;
+			position: absolute;
+			left: 99px;
+			top:0px;
+			transform-origin: center 100px;
+		}
+		/*.box ul li:nth-child(1){
+			transform: rotate(0);
+		}
+		.box ul li:nth-child(2){
+			transform: rotate(6deg);
+		}
+		.box ul li:nth-child(3){
+			transform: rotate(12deg);
+		}
+		.box ul li:nth-child(4){
+			transform: rotate(18deg);
+		}*/
+		.box ul  li:nth-child(5n+1){
+			height: 16px;
+		}
+		#hours{
+			width: 10px;
+			height: 60px;
+			background-color: black;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -60px 0 0 -5px;
+			-webkit-transform-origin:bottom;
+		}
+		#circle{
+			width: 20px;
+			height: 20px;
+			background-color: red;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -10px 0 0 -10px;
+		}
+		#min{
+			width: 5px;
+			height:80px;
+			background-color: red;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -80px 0 0 -2px;
+			-webkit-transform-origin:bottom;
+		}
+		#sec{
+			width: 3px;
+			height:100px;
+			background-color: red;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -90px 0 0 -2px;
+			-webkit-transform-origin:bottom;
+		}
+		耳濡目染
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul class="zhen">
+			<!--<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>-->
+		</ul>
+		<div id="hours">
+			
+		</div>
+		<div id="min">
+			
+		</div>
+		<div id="sec">
+			
+		</div>
+		<div id="circle">
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		var ul_box = document.getElementsByTagName('ul')[0];
+		var LiStr = "";
+		for (var i = 0; i<60; i++) {
+			LiStr +="<li style='transform:rotate("+i*6+"deg)'></li>";
+			
+		}
+		ul_box.innerHTML = LiStr;
+		setInterval(function(){
+			var date = new Date();
+//			 获取毫秒数 
+			ms = date.getMilliseconds();
+//			获取当前秒数
+			s = date.getSeconds();
+//			得到当前真实秒数
+			s = s+ms/1000;
+//			获取当前分
+			f = date.getMinutes();
+//			得到真实分
+			f = f + s/60;
+			
+			time = date.getHours();
+			time = time%12 +f/60;
+			sec.style.transform ="rotate("+s*6+"deg)";
+			min.style.transform ="rotate("+f*6+"deg)";
+			hours.style.transform ="rotate("+time*30+"deg)";
+		},1)
+	</script>
+</body>
+</html>
